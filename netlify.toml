@@ -1,0 +1,9 @@
+# Netlify build configuration for the gym-platform monorepo.
+# The Next.js app lives in apps/web; base redirects all build steps there.
+[build]
+  base = "apps/web"
+  command = "next build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
