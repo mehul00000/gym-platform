@@ -10,7 +10,7 @@ import type { Member, Membership, Payment, Streak } from "@gym/types";
  */
 export async function GET() {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) return fail(401, "AUTHENTICATION_ERROR", "Sign in required");
     const db = getServiceClient();
 

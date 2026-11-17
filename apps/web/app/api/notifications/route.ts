@@ -13,7 +13,7 @@ import { markNotificationsReadSchema } from "@gym/validation";
  */
 export async function GET(req: NextRequest) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) return fail(401, "AUTHENTICATION_ERROR", "Sign in required");
     const db = getServiceClient();
     const { data: profile } = await db
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
 /** PATCH /api/notifications — mark member notifications processed/sent. */
 export async function PATCH(req: NextRequest) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) return fail(401, "AUTHENTICATION_ERROR", "Sign in required");
     const body = markNotificationsReadSchema.parse(await req.json());
     const db = getServiceClient();

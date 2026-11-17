@@ -4,7 +4,7 @@ import { Sidebar } from "@/components/sidebar";
 import { Topbar } from "@/components/topbar";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const { userId } = auth();
+  const { userId } = await auth();
   if (!userId) redirect("/sign-in");
   return (
     <div className="min-h-screen">

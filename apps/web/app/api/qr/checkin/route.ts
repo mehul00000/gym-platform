@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   const rl = rateLimit(req, "qr-checkin", { limit: 10, windowMs: 60_000 });
   if (!rl.ok) return fail(429, "RATE_LIMIT_ERROR", "Too many attempts. Try again shortly.");
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) return fail(401, "AUTHENTICATION_ERROR", "Sign in required");
     const body = qrCheckinSchema.parse(await req.json());
 

@@ -33,7 +33,7 @@ const forbidden = (what = "permission") =>
  * the required permission. This is the single authorization gate for every API route.
  */
 export async function requireAuth(permission?: Permission): Promise<AuthContext> {
-  const { userId, orgId } = auth();
+  const { userId, orgId } = await auth();
   if (!userId) throw unauthorized();
 
   const db = getServiceClient();
